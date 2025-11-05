@@ -1,0 +1,125 @@
+/* Variables for theme colors */
+$primary-color: #2cb9d5; /* Purple */
+$secondary-color: #ff6584; /* Pink */
+$background-color: #bb1818; /* Light Grey */
+$text-color: #333; /* Dark Grey */
+
+/* General Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: $background-color;
+  color: $text-color;
+  line-height: 1.6;
+}
+
+/* App root styling */
+app-user-root {
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, $primary-color, $secondary-color);
+  color: #22d5de;
+  text-align: center;
+  padding: 20px;
+
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+}
+
+/* Header styling */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: $primary-color;
+  color: #1192a9;
+  padding: 10px 20px;
+  text-align: center;
+  box-shadow: 10 4px 8px rgba(0, 0, 0, 0.1);
+
+  h1 {
+    font-size: 2rem;
+    margin: 20px;
+    font-weight: bold;
+  }
+}
+
+/* Buttons */
+button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #0db5e4;
+  background-color: $secondary-color;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background-color: darken($secondary-color, 10%);
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(1);
+  }
+}
+
+/* Footer */
+footer {
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
+  background: $primary-color;
+  color: #ffffff;
+  text-align: center;
+  padding: 10px;
+  font-size: 0.9rem;
+
+  a {
+    color: lighten($secondary-color, 10%);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  header {
+    h1 {
+      font-size: 1.8rem;
+    }
+  }
+
+  app-user-root {
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 8px 15px;
+  }
+}

@@ -1,0 +1,63 @@
+<div class="container">
+  <h1>Placement Management</h1>
+
+  <!-- Form (small, centered) -->
+  <div class="form-card shadow">
+    <h4>{{ editingPlacement ? 'Edit Placement' : 'Add Placement' }}</h4>
+    <form #placementForm="ngForm" (ngSubmit)="onRegister(placementForm)">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" [(ngModel)]="editingPlacement.name" name="name" class="form-control" required style="background-color: azure;" />
+      </div>
+      <div class="form-group">
+        <label>College ID</label>
+        <input type="text" [(ngModel)]="editingPlacement.collegeId" name="collegeId" class="form-control" required style="background-color: azure;" />
+      </div>
+      <div class="form-group">
+        <label>Qualification</label>
+        <input type="text" [(ngModel)]="editingPlacement.qualification" name="qualification" class="form-control" required style="background-color: azure;"/>
+      </div>
+      <div class="form-group">
+        <label>Year</label>
+        <input type="number" [(ngModel)]="editingPlacement.year" name="year" class="form-control" required style="background-color: azure;"/>
+      </div>
+      <div class="form-group">
+        <label>Date</label>
+        <input type="date" [(ngModel)]="editingPlacement.date" name="date" class="form-control" required style="background-color: azure;"/>
+      </div>
+      <div class="button-row">
+        <button type="submit" class="btn-primary">{{ editingPlacement?.id ? 'Update' : 'Add' }}</button>
+        <button type="button" class="btn-danger" (click)="placementForm.reset(); editingPlacement = null">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="table-card">
+    <h4>Placements List</h4>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>College ID</th>
+          <th>Qualification</th>
+          <th>Year</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let placement of placements">
+          <td>{{ placement.name }}</td>
+          <td>{{ placement.collegeId }}</td>
+          <td>{{ placement.qualification }}</td>
+          <td>{{ placement.year }}</td>
+          <td>{{ placement.date }}</td>
+          <td>
+            <button class="btn-primary" (click)="editPlacement(placement)">Edit</button>
+            <button class="btn-danger" (click)="deletePlacement(placement.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

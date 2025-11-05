@@ -1,0 +1,105 @@
+<div class="container">
+  <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="shadow w-50 p-5">
+      <!-- Register Form -->
+      <form #registerForm="ngForm" (ngSubmit)="register()" novalidate>
+        <h4 class="display-6 text-center py-2">User Details</h4>
+
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input id="name" required [(ngModel)]="newUser.name" name="name" #name="ngModel" type="text"
+            class="form-control" placeholder="Enter name">
+          <div *ngIf="name.invalid && name.touched">
+            <small class="text-danger" *ngIf="name.errors?.['required']">Required</small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input id="email" required [(ngModel)]="newUser.email" name="email" #email="ngModel" type="email"
+            class="form-control" placeholder="Enter email">
+          <div *ngIf="email.invalid && email.touched">
+            <small class="text-danger" *ngIf="email.errors?.['required']">Required</small>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="phoneNumber" class="form-label">Phone Number</label>
+          <input id="phoneNumber" required [(ngModel)]="newUser.phoneNumber" name="phoneNumber" #phoneNumber="ngModel" type="text"
+            class="form-control" placeholder="Enter phone number">
+          <div *ngIf="phoneNumber.invalid && phoneNumber.touched">
+            <small class="text-danger" *ngIf="phoneNumber.errors?.['required']">Required</small>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <input class="btn btn-primary" type="submit" value="Submit">
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- User Table -->
+  <div class="mt-5">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone Number</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let placement of placements">
+          <td>{{placement.id}}</td>
+          <td>{{placement.name}}</td>
+          <td>{{placement.email}}</td>
+          <td>{{placement.phoneNumber}}</td>
+          <td>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="edit(placement)">Edit</button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-danger" (click)="deletePlacement(placement)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Update Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Update User</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form #updateForm="ngForm" (ngSubmit)="updatePlacement()" novalidate>
+            <div class="mb-3">
+              <label for="updateName" class="form-label">Name</label>
+              <input id="updateName" required [(ngModel)]="placementToUpdate.name" name="name" #updateName="ngModel" type="text" class="form-control" placeholder="Enter name">
+            </div>
+
+            <div class="mb-3">
+              <label for="updateEmail" class="form-label">Email</label>
+              <input id="updateEmail" required [(ngModel)]="placementToUpdate.email" name="email" #updateEmail="ngModel" type="email" class="form-control" placeholder="Enter email">
+            </div>
+
+            <div class="mb-3">
+              <label for="updatePhoneNumber" class="form-label">Phone Number</label>
+              <input id="updatePhoneNumber" required [(ngModel)]="placementToUpdate.phoneNumber" name="phoneNumber" #updatePhoneNumber="ngModel" type="text" class="form-control" placeholder="Enter Phone Number">
+            </div>
+
+            <div class="text-center">
+              <input class="btn btn-primary" type="submit" value="Update">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

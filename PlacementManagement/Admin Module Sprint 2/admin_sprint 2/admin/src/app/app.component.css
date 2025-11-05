@@ -1,0 +1,84 @@
+/* General container styling */
+.container {
+    max-width: 900px;
+    font-style: oblique;
+    margin: auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #ae8c43, #f0d031); /* Gradient background */
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+  
+/* Form Styling */
+.shadow {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+  
+.form-label {
+    font-weight: bold;
+}
+  
+.form-control {
+    border-radius: 5px;
+}
+  
+/* Button Styling */
+.btn-primary {
+    background:peru;
+    /* linear-gradient(45deg, #007bff, #00d2ff); */
+    border: 1px solid #ae8c43;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+  
+.btn-primary:hover {
+    background: goldenrod;
+     /* linear-gradient(45deg, #0056b3, #0099cc); */
+}
+  
+.btn-danger {
+    background: orange;
+    border: 1px solid darkorange;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+  
+.btn-danger:hover {
+    background: darkorange;
+}
+  
+/* Table Styling */
+.table {
+    width: 100%;
+    background: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+}
+  
+.table th {
+    background: linear-gradient(45deg, #007bff, #00d2ff);;
+    color: white;
+    text-align: center;
+}
+  
+.table td, .table th {
+    padding: 10px;
+    text-align: center;
+}
+  
+.table tbody tr:nth-child(even) {
+    background: #f8f9fa;
+}
+  
+/* Modal Styling */
+.modal-content {
+    border-radius: 10px;
+}

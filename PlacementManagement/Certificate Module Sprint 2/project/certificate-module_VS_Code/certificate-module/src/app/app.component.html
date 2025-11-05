@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certificate Database</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    *{
+      margin: 0px;
+      padding: 0px;
+      border: 0px;
+    }
+    body {
+      background-color: #A8BBA3; /* Light yellow */
+      color: #333;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .custom-container {
+      background-color: #F7F4EA; /* Light pink */
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+      margin-bottom: 30px;
+    }
+
+    .form-title {
+      color: #7BD3EA; /* Light blue */
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-control {
+      border-radius: 10px;
+    }
+
+    .btn-custom {
+      background-color: #A1EEBD; /* Mint green */
+      color: #333;
+      border-radius: 10px;
+    }
+
+    .btn-custom:hover {
+      background-color: #7BD3EA; /* Light blue */
+      color: #fff;
+    }
+
+    .table-container {
+      background-color: #F7F4EA; /* Light pink */
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .table th {
+      background-color: #EBD9D1; /* Mint green */
+      color: #333;
+    }
+
+    .table td {
+      background-color: rgb(190, 186, 186); /* Light yellow */
+    }
+
+  .update-section {
+  background-color: #7BD3EA; /* Light blue */
+  border-radius: 20px;
+  padding: 30px;
+  color: #fff;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.update-section h4 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.update-section input {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.update-section button {
+  background-color: #A1EEBD; /* Mint green */
+  color: #333;
+  border-radius: 10px;
+  padding: 10px 20px;
+  width: 100%;
+  max-width: 200px;
+}
+
+.update-section button:hover {
+  background-color: #7BD3EA; /* Light blue */
+  color: #fff;
+}
+
+.update-section .loading {
+  text-align: center;
+}
+
+
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <div class="custom-container">
+          <h4 class="form-title">Add Certificate</h4>
+          <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input 
+                id="name" 
+                required 
+                #studentName="ngModel" 
+                ngModel 
+                name="name" 
+                type="text" 
+                class="form-control" 
+                placeholder="Enter student name">
+            </div>
+
+            <!-- issuer -->
+            <div class="mb-3">
+              <label for="issuer" class="form-label">Issuer</label>
+              <input 
+                id="issuer" 
+                required 
+                #courseName="ngModel" 
+                ngModel 
+                name="issuer" 
+                type="text" 
+                class="form-control" 
+                placeholder="Enter course name">
+            </div>
+
+            <!-- Issue Date -->
+            <div class="mb-3">
+              <label for="issueDate" class="form-label">Issue Date</label>
+              <input 
+                id="issueDate" 
+                required 
+                #issueDate="ngModel" 
+                ngModel 
+                name="issueDate" 
+                type="date" 
+                class="form-control" 
+                placeholder="Enter issue date">
+            </div>
+
+            <!-- Expiry Date -->
+            <div class="mb-3">
+              <label for="expiryDate" class="form-label">Expiry Date</label>
+              <input 
+                id="expiryDate" 
+                required 
+                #expiryDate="ngModel" 
+                ngModel 
+                name="expiryDate" 
+                type="date" 
+                class="form-control" 
+                placeholder="Enter expiry date">
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center">
+              <button class="btn btn-custom px-4">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Certificate Table -->
+    <div class="row mt-5">
+      <div class="col">
+        <div class="table-container">
+          <table class="table table-bordered text-center">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Issuer</th>
+                <th>Issue Date</th>
+                <th>Expiry Date</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let Certificate of CertificateDetails">
+                <td>{{Certificate.id}}</td>
+                <td>{{Certificate.name}}</td>
+                <td>{{Certificate.issuer}}</td>
+                <td>{{Certificate.issueDate}}</td>
+                <td>{{Certificate.expiryDate}}</td>
+                <td>
+                  <button 
+                    type="button" 
+                    class="btn btn-custom" 
+                    (click)="edit(Certificate)">Edit</button>
+                </td>
+                <td>
+                  <button 
+                    type="button" 
+                    class="btn btn-danger" 
+                    (click)="deleteCertificate(Certificate)">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col-md-6 mx-auto">
+        <div class="update-section">
+          <h4>Update Certificate</h4>
+          <form #registerForm="ngForm" (ngSubmit)="updateCertificate()" *ngIf="CertificateToUpdate.id">
+            <div><label for="name" class="form-label">Name</label></div>
+            <input type="text" name="name" [(ngModel)]="CertificateToUpdate.name" placeholder="Enter Name" required>
+          <div><label for="issuer" class="form-label">Issuer</label></div>
+            <input type="text" name="issuer" [(ngModel)]="CertificateToUpdate.issuer" placeholder="Enter Issuer" required>
+          <div><label for="issueDate" class="form-label">Issue Date</label></div>
+            <input type="date" name="issueDate" [(ngModel)]="CertificateToUpdate.issueDate" required>
+          <div><label for="expiryDate" class="form-label">Expiry Date</label></div>
+            <input type="date" name="expiryDate" [(ngModel)]="CertificateToUpdate.expiryDate" required>
+            
+            <button type="submit">Update Certificate</button>
+          </form>
+
+            <div *ngIf="isLoading" class="text-center">
+              <p>Loading...</p> <!-- Or you could use a spinner here -->
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

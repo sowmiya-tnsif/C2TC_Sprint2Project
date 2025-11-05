@@ -1,0 +1,90 @@
+<body>
+<form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+  <h4 class="display-6 text-center py-2">College Database</h4>
+  <div class="mb-3">
+    <label for="collegename">College Name</label>
+    <input id="collegename" required #name="ngModel" ngModel name="collegeName" type="text" class="form-control" placeholder="Enter college name">
+    <div *ngIf="name.invalid && name.touched">
+      <small class="text-danger" *ngIf="name.errors?.['required']">Required</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="location">Location</label>
+    <input id="location" required #location="ngModel" ngModel name="location" type="text" class="form-control" placeholder="Enter location">
+    <div *ngIf="location.invalid && location.touched"><small class="text-danger" *ngIf="location.errors?.['required']">Required</small></div>
+  </div>
+
+  <div>
+    <label for="college_admin">College Admin</label>
+    <input id="college_admin" required #college_admin="ngModel" ngModel name="collegeAdmin" type="text" class="form-control" placeholder="Enter college admin">
+    <div *ngIf="college_admin.invalid && college_admin.touched"><small class="text-danger" *ngIf="college_admin.errors?.['required']">Required</small></div>
+  </div>
+
+  <div class="form-group text-center">
+    <input class="btn btn-secondary" type="submit" value="Submit">
+  </div>
+</form>
+
+<div class="mt-5">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>College Name</th>
+        <th>Location</th>
+        <th>College Admin</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let college of collegeDetails">
+        <td>{{college.id}}</td>
+        <td>{{college.collegeName}}</td>
+        <td>{{college.location}}</td>
+        <td>{{college.collegeAdmin}}</td>
+        <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="edit(college)">Edit</button></td>
+        <td><button type="button" class="btn btn-info" (click)="deleteCollege(college)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal for Editing -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Update College</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #updateForm="ngForm" (ngSubmit)="updateCollege()">
+          <div>
+            <label for="collegename">College Name</label>
+            <input id="collegename" required #name="ngModel" [(ngModel)]="collegeToUpdate.collegeName" name="collegename" type="text" class="form-control" placeholder="Enter college name">
+            <div *ngIf="name.invalid && name.touched"><small class="text-danger" *ngIf="name.errors?.['required']">Required</small></div>
+          </div>
+
+          <div>
+            <label for="location">Location</label>
+            <input id="location" required #location="ngModel" [(ngModel)]="collegeToUpdate.location" name="location" type="text" class="form-control" placeholder="Enter location">
+            <div *ngIf="location.invalid && location.touched"><small class="text-danger" *ngIf="location.errors?.['required']">Required</small></div>
+          </div>
+
+          <div>
+            <label for="college_admin">College Admin</label>
+            <input id="college_admin" required #college_admin="ngModel" [(ngModel)]="collegeToUpdate.collegeAdmin" name="collegeAdmin" type="text" class="form-control" placeholder="Enter college admin">
+            <div *ngIf="college_admin.invalid && college_admin.touched"><small class="text-danger" *ngIf="college_admin.errors?.['required']">Required</small></div>
+          </div>
+
+          <div class="form-group text-center">
+            <input class="btn btn-secondary" type="submit" value="Update">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>

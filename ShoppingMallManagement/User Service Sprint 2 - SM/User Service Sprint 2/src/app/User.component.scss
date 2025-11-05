@@ -1,0 +1,178 @@
+/* Variables for theme colors */
+$primary-color: #00eeff;
+$danger-color: #356ddc;
+$background-color: #29333e;
+$text-color: #d33c6c;
+
+/* General styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: $background-color;
+  color: $text-color;
+}
+
+/* Full-height container */
+.full-height {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Card styling for the form */
+.card {
+  background-color: #11ddc2;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(8, 199, 103, 0.2);
+  padding: 20px;
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+}
+
+/* Form styling */
+form {
+  display: flex;
+  flex-direction: column;
+
+  h4 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: $primary-color;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  input {
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #0db6e5;
+    border-radius: 5px;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+    }
+  }
+
+  .btn-primary {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    background-color: $primary-color;
+    color: #0c5bb5;
+    border: none;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+}
+
+/* Table styling */
+.table {
+  margin-top: 20px;
+  background-color: #c66161;
+  border-collapse: collapse;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+  thead {
+    th {
+      background-color: $primary-color;
+      color: #aa1616;
+      text-align: center;
+      padding: 10px;
+    }
+  }
+
+  tbody {
+    td {
+      text-align: center;
+      padding: 10px;
+      border: 1px solid #02e6ff;
+
+      &:hover {
+        background-color: #09eaff;
+      }
+    }
+  }
+
+  button {
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    color: #b22949;
+
+    &.btn-primary {
+      background-color: $primary-color;
+      border: none;
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+    }
+
+    &.btn-danger {
+      background-color: $danger-color;
+      border: none;
+
+      &:hover {
+        background-color: darken($danger-color, 10%);
+      }
+    }
+  }
+}
+
+/* Modal styling */
+.modal-content {
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(3, 242, 234, 0.882);
+}
+
+.modal-header {
+  border-bottom: none;
+
+  .modal-title {
+    font-weight: bold;
+    color: $primary-color;
+  }
+}
+
+.modal-body {
+  h4 {
+    font-size: 1.5rem;
+    text-align: center;
+    color: $text-color;
+    margin-bottom: 20px;
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  form,
+  .card {
+    max-width: 100%;
+  }
+
+  table {
+    font-size: 0.9rem;
+  }
+
+  .modal-content {
+    padding: 15px;
+  }
+}

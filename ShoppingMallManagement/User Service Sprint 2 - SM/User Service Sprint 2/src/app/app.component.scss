@@ -1,0 +1,15 @@
+/* app.component.scss */
+nav {
+  margin-bottom: 20px;
+}
+
+nav a {
+  margin-right: 10px;
+  text-decoration: none;
+  color: #007bff;
+}
+
+a.active {
+  font-weight: bold;
+  color: #0056b3;
+}

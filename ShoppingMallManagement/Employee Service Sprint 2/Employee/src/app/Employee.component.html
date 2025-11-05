@@ -1,0 +1,119 @@
+<div class="">
+  <div style="height:100vh;">
+    <div class="">
+      <div class="shadow w-20 p-5 position-absolute top-50 start-50 translate-middle">
+        <form #registerForm="ngForm" (ngSubmit)="addEmployee(registerForm)">
+          <h4 class="display-6 text-center py-2">Employee Details</h4>
+
+          <div>
+            <label for="name">Name</label>
+            <input id="name" required #name="ngModel" ngModel name="name" type="text"
+                   class="form-control" placeholder="Enter name">
+            <div *ngIf="name.invalid && name.touched">
+              <small class="text-danger" *ngIf="name.errors?.['required']">Required</small>
+            </div>
+          </div><br>
+
+          <div>
+            <label for="position">Position</label>
+            <input id="position" required #position="ngModel" ngModel name="position" type="text"
+                   class="form-control" placeholder="Enter position">
+            <div *ngIf="position.invalid && position.touched">
+              <small class="text-danger" *ngIf="position.errors?.['required']">Required</small>
+            </div>
+          </div><br>
+
+          <div>
+            <label for="salary">Salary</label>
+            <input id="salary" required #salary="ngModel" ngModel name="salary" type="number" step="0.01"
+                   class="form-control" placeholder="Enter salary">
+            <div *ngIf="salary.invalid && salary.touched">
+              <small class="text-danger" *ngIf="salary.errors?.['required']">Required</small>
+            </div>
+          </div><br>
+
+          <div class="form-group text-center">
+            <input class="btn btn-primary" type="submit" value="Submit">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div><br>
+
+  <div class="mt-5">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Employee ID</th>
+          <th>Name</th>
+          <th>Position</th>
+          <th>Salary</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of employees">
+          <td>{{employee.employeeId}}</td>
+          <td>{{employee.name}}</td>
+          <td>{{employee.position}}</td>
+          <td>{{employee.salary}}</td>
+          <td>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="edit(employee)">Edit</button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-danger" (click)="deleteEmployee(employee)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Update Employee</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form #updateForm="ngForm" (ngSubmit)="updateEmployee()">
+            <h4 class="display-6 text-center py-2">Update Employee</h4>
+
+            <div>
+              <label for="name">Name</label>
+              <input id="name" required #name="ngModel" [(ngModel)]="employeeToUpdate.name" name="name" type="text"
+                     class="form-control" placeholder="Enter name">
+              <div *ngIf="name.invalid && name.touched">
+                <small class="text-danger" *ngIf="name.errors?.['required']">Required</small>
+              </div>
+            </div><br>
+
+            <div>
+              <label for="position">Position</label>
+              <input id="position" required #position="ngModel" [(ngModel)]="employeeToUpdate.position" name="position" type="text"
+                     class="form-control" placeholder="Enter position">
+              <div *ngIf="position.invalid && position.touched">
+                <small class="text-danger" *ngIf="position.errors?.['required']">Required</small>
+              </div>
+            </div><br>
+
+            <div>
+              <label for="salary">Salary</label>
+              <input id="salary" required #salary="ngModel" [(ngModel)]="employeeToUpdate.salary" name="salary" type="number" step="0.01"
+                     class="form-control" placeholder="Enter salary">
+              <div *ngIf="salary.invalid && salary.touched">
+                <small class="text-danger" *ngIf="salary.errors?.['required']">Required</small>
+              </div>
+            </div><br>
+
+            <div class="form-group text-center">
+              <input class="btn btn-primary" type="submit" value="Update">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
